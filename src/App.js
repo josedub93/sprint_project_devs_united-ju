@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import {firestore} from "./firebase"
+import {firestore} from "./firebase";
+import heart from "./svg/heart.svg"
 
 function App() {
   
@@ -12,10 +13,9 @@ function App() {
 
   useEffect(() => {
     //Toma la coleccion con nombre tweets de la base de datos
-    firestore
-      .collection("tweets")
-      .get()
-      .then((snapshot) => {
+    const unsubscribe = 
+    firestore.collection("tweets")
+    .onSnapshot((snapshot) => {
         const tweets = snapshot.docs.map((doc) => {
           return {
             tweet: doc.data().tweet,
@@ -25,6 +25,7 @@ function App() {
         });
         setTweets(tweets);
       });
+      return () => unsubscribe;
   }, []);
 
   const handleChange = (e) => {
@@ -54,6 +55,7 @@ function App() {
       let nuevoTweet = {
         tweet: doc.data().tweet,
         autor: doc.data().autor,
+        likes: doc.data().likes,
         id: doc.id
       };
       // el cual añadiremos en la lista del estado
@@ -61,6 +63,22 @@ function App() {
     });
   };
 
+const deleteTweet = (id) => {
+  //se borra el tweet del estado
+  const nuevosTweets = tweets.filter((tweet) =>{
+    return tweet.id !== id;
+  });
+
+//actualizamos listado de tweets
+setTweets(nuevosTweets);
+
+//Se borra el tweet en firebase
+firestore.doc(`tweets/${id}`).delete();
+};
+
+ const likeTweet = (id, numLikes) => {
+   firestore.doc(`tweets/${id}`).update({likes: numLikes + 1});
+ };
   return (
     <div className="App">
      <form>
@@ -87,7 +105,11 @@ function App() {
       {tweets.map((tweet) => {
         return (
           <div key={tweet.id}>
-            <h1>{tweet.tweet}</h1>
+            <h1>{tweet.tweet}
+            <i className="fas fa-trash" onClick={() => deleteTweet(tweet.id)}></i>
+            </h1>
+            {/* <i class="fa-solid fa-heart-half"></i> */}
+           <span><span onClick={() => likeTweet(tweet.id)}><img src={heart} alt="corazon" height="15px" /></span>4</span>
             <h4>por: {tweet.autor}</h4>
             </div>
         );
