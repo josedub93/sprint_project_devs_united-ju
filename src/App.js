@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import {firestore} from "./firebase";
+import {firestore, loginWithGoogle, auth, logout} from "./firebase";
 import heart from "./svg/heart.svg"
 
 function App() {
@@ -8,8 +8,12 @@ function App() {
   const [tweets, setTweets] = useState([]);
   const [tweet, setTweet] = useState({
     tweet: "",
-    autor: ""
+    autor: "",
+    uid: "",
+    mail:"",
+    date: new Date()
   });
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     //Toma la coleccion con nombre tweets de la base de datos
@@ -20,20 +24,29 @@ function App() {
           return {
             tweet: doc.data().tweet,
             autor: doc.data().autor,
-            id: doc.id
+            id: doc.id,
+            likes: doc.data().likes,
+            email: doc.data().email,
+            uid: doc.data().uid,
+            date: doc.data().date
           };
         });
         setTweets(tweets);
+      });
+      auth.onAuthStateChanged((user) => {
+setUser(user);
+
       });
       return () => unsubscribe;
   }, []);
 
   const handleChange = (e) => {
     let nuevoTweet = {
-      ...tweet,
-      [e.target.name]: e.target.value
+      tweet: e.target.value,
+      uid: user.uid,
+      email: user.email,
+      autor: user.displayName
     };
-
     setTweet(nuevoTweet);
   };
 
@@ -55,7 +68,6 @@ function App() {
       let nuevoTweet = {
         tweet: doc.data().tweet,
         autor: doc.data().autor,
-        likes: doc.data().likes,
         id: doc.id
       };
       // el cual añadiremos en la lista del estado
@@ -76,11 +88,23 @@ setTweets(nuevosTweets);
 firestore.doc(`tweets/${id}`).delete();
 };
 
- const likeTweet = (id, numLikes) => {
-   firestore.doc(`tweets/${id}`).update({likes: numLikes + 1});
+ const likeTweet = (id, likes) => {
+   if (!likes) likes = 0;
+   firestore.doc(`tweets/${id}`).update({likes: likes + 1});
  };
   return (
     <div className="App">
+      {user ? (
+        <>
+        <div>
+          <img src={user.photoURL} alt="photo" />
+          <p>Hola {user.displayName}</p>
+          <button onClick={logout}> Log Out</button>
+        </div>
+        </>
+      ) : (
+        <button onClick={loginWithGoogle}>Login con google</button>
+      )}
      <form>
      <textarea
           name="tweet"
@@ -91,13 +115,13 @@ firestore.doc(`tweets/${id}`).delete();
           placeholder="escribe un tweet..."
         />
         <div>
-          <input
+          {/* <input
             name="autor"
             onChange={handleChange}
             value={tweet.autor}
             type="text"
             placeholder="persona autora"
-          />
+          /> */}
           <button onClick={sendTweet}>Enviar tweet</button>
         </div>
      </form>
@@ -105,12 +129,13 @@ firestore.doc(`tweets/${id}`).delete();
       {tweets.map((tweet) => {
         return (
           <div key={tweet.id}>
-            <h1>{tweet.tweet}
+            <p>{tweet.tweet}
             <i className="fas fa-trash" onClick={() => deleteTweet(tweet.id)}></i>
-            </h1>
+            </p>
+            <p>por: {tweet.autor}</p>
+            <p>{tweet.email}</p>
             {/* <i class="fa-solid fa-heart-half"></i> */}
-           <span><span onClick={() => likeTweet(tweet.id)}><img src={heart} alt="corazon" height="15px" /></span>4</span>
-            <h4>por: {tweet.autor}</h4>
+           <span><span onClick={() => likeTweet(tweet.id, tweet.likes)}><img src={heart} alt="corazon" height="15px" /></span>{tweet.likes ? tweet.likes : 0}</span>
             </div>
         );
       })}
