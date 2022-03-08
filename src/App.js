@@ -17,8 +17,8 @@ function App() {
 
   useEffect(() => {
     //Toma la coleccion con nombre tweets de la base de datos
-    const unsubscribe = 
-    firestore.collection("tweets")
+    const unsubscribe = firestore
+    .collection("tweets")
     .onSnapshot((snapshot) => {
         const tweets = snapshot.docs.map((doc) => {
           return {
@@ -34,18 +34,17 @@ function App() {
         setTweets(tweets);
       });
       auth.onAuthStateChanged((user) => {
-setUser(user);
-
+        setUser(user);
       });
-      return () => unsubscribe;
+      return () => unsubscribe();
   }, []);
 
   const handleChange = (e) => {
     let nuevoTweet = {
-      tweet: e.target.value,
-      uid: user.uid,
-      email: user.email,
-      autor: user.displayName
+    	tweet: e.target.value,
+			uid: user.uid,
+			email: user.email,
+			autor: user.displayName
     };
     setTweet(nuevoTweet);
   };
@@ -55,24 +54,26 @@ setUser(user);
     // enviamos el tweet a la colección
     let enviarTweet = firestore.collection("tweets").add(tweet);
     // el envio, devuelve una promesa
-    let solicitarDocumento = enviarTweet.then((docRef) => {
+    enviarTweet.then((docRef) => {
       // y dentro de esta podemos rescatar una referencia
       // al documento (docRef), cuya información final
       // obtendremos con .get()
       return docRef.get();
     });
     // docRef.get() devuelve una promesa
-    solicitarDocumento.then((doc) => {
-      // y dentro de esta, podemos rescatar la información
-      // del documento
-      let nuevoTweet = {
-        tweet: doc.data().tweet,
-        autor: doc.data().autor,
-        id: doc.id
-      };
-      // el cual añadiremos en la lista del estado
-      setTweets([nuevoTweet, ...tweets]);
-    });
+    // solicitarDocumento.then((doc) => {
+
+    //   // y dentro de esta, podemos rescatar la información
+    //   // del documento
+    //   let nuevoTweet = {
+    //     tweet: doc.data().tweet,
+    //     autor: doc.data().autor,
+    //     email: doc.data().email,
+    //     id: doc.id
+    //   };
+    //   // el cual añadiremos en la lista del estado
+    //   setTweets([nuevoTweet, ...tweets]);
+    // });
   };
 
 const deleteTweet = (id) => {
@@ -96,16 +97,16 @@ firestore.doc(`tweets/${id}`).delete();
     <div className="App">
       {user ? (
         <>
-        <div>
-          <img src={user.photoURL} alt="photo" />
+        <div className='user-profile'>
+          <img className='user-profile-pic' src={user.photoURL} alt="photo" />
           <p>Hola {user.displayName}</p>
           <button onClick={logout}> Log Out</button>
         </div>
         </>
       ) : (
-        <button onClick={loginWithGoogle}>Login con google</button>
+        <button className='login-btn' onClick={loginWithGoogle}>Login con google</button>
       )}
-     <form>
+     <form className='formulario'>
      <textarea
           name="tweet"
           onChange={handleChange}
@@ -114,28 +115,27 @@ firestore.doc(`tweets/${id}`).delete();
           rows="5"
           placeholder="escribe un tweet..."
         />
-        <div>
-          {/* <input
-            name="autor"
-            onChange={handleChange}
-            value={tweet.autor}
-            type="text"
-            placeholder="persona autora"
-          /> */}
+        <div className='input-group'>
+         
           <button onClick={sendTweet}>Enviar tweet</button>
         </div>
      </form>
       <h1>Tweets:</h1>
       {tweets.map((tweet) => {
         return (
-          <div key={tweet.id}>
-            <p>{tweet.tweet}
+          <div className='tweet-container'>
+          <div className='tweet' key={tweet.id}>
+            <div className='tweet-info'>
+            <p>{tweet.tweet}</p>
+            <p className='tweet-autor'>por: {tweet.autor}</p>
+            <p className='tweet-autor'>{tweet.email}</p>
+          </div>
+          <div className='acciones'>
             <i className="fas fa-trash" onClick={() => deleteTweet(tweet.id)}></i>
-            </p>
-            <p>por: {tweet.autor}</p>
-            <p>{tweet.email}</p>
             {/* <i class="fa-solid fa-heart-half"></i> */}
            <span><span onClick={() => likeTweet(tweet.id, tweet.likes)}><img src={heart} alt="corazon" height="15px" /></span>{tweet.likes ? tweet.likes : 0}</span>
+            </div>
+            </div>
             </div>
         );
       })}
