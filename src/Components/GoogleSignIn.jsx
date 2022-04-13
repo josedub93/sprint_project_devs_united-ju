@@ -13,8 +13,8 @@ import googleSignIn from "../icons/google sign in.svg";
               <img src={bigLogo} alt="devs united logo"/>
             </div>
             <div>
-              <h1 className="title">Welcome!</h1>
-              <p className="text">
+              <h1>Welcome!</h1>
+              <p>
                 The place where developeres from all around the world share thoughts,
                 ideas, get inspired and so much more.
               </p>
@@ -24,8 +24,8 @@ import googleSignIn from "../icons/google sign in.svg";
                 
                 onClick={loginWithGoogle}
               />
-              <p className="text loginBottom1">
-                © 2020 Devs_United - <span className="loginBottom2">BETA</span>
+              <p>
+                © 2020 Devs_United - <span>BETA</span>
               </p>
             </div>
           </div>

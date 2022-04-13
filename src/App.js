@@ -1,6 +1,6 @@
 import React from 'react';
-import './styles.css';
-import { Switch ,Route } from 'react-router-dom';
+import './Styles/styles.css';
+import { Routes ,Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import SignIn from './Pages/SignIn';
 import Profile from './Pages/Profile';
@@ -9,11 +9,11 @@ import Profile from './Pages/Profile';
 function App() {  
   return (
     <div className="App">
-      <Switch>
+      <Routes>
          <Route exact path='/' element={<Home/>} />
          <Route path='/SignIn' element={<SignIn/>} />
         <Route path='/Profile' element={<Profile/>} />
-        </Switch>
+        </Routes>
   </div>
   );
 }
