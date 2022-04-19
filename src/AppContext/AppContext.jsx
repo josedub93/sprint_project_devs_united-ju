@@ -44,6 +44,8 @@ export default function AppProvider({ children }) {
             });
         return () => unsubscribe();
     }, []);
+
+
     return (
         <AppContext.Provider value={{ user, setUser, tweet, setTweet, tweets, setTweets }}>
             {children}
