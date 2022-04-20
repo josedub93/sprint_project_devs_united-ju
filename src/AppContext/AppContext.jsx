@@ -1,10 +1,16 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState, createContext, useContext } from 'react';
 import { firestore, auth } from "../firebase";
 
 
 export const AppContext = createContext();
 
-export default function AppProvider({ children }) {
+export const Context = () =>{
+        const testContext = useContext(AppContext);
+        if (!testContext) throw new Error("There is no Auth provider");
+        return testContext;
+}
+
+export function AppProvider({ children }) {
 
     const [tweets, setTweets] = useState([]);
     const [tweet, setTweet] = useState({
@@ -18,12 +24,9 @@ export default function AppProvider({ children }) {
     });
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            const { displayName, email, photoURL, uid } = user;
-            setUser({ displayName, email, photoURL, uid });
-        });
-    }, []);
+
+
+
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
         const unsubscribe = firestore
@@ -42,13 +45,17 @@ export default function AppProvider({ children }) {
                 });
                 setTweets(tweets);
             });
+         auth.onAuthStateChanged((user) => {
+             setUser(user);
+         });
         return () => unsubscribe();
     }, []);
 
 
     return (
-        <AppContext.Provider value={{ user, setUser, tweet, setTweet, tweets, setTweets }}>
+        <AppContext.Provider
+            value={{ user, setUser, tweet, setTweet, tweets, setTweets }}>
             {children}
         </AppContext.Provider>
-    )
+    );
 }

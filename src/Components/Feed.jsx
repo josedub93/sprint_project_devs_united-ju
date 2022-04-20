@@ -3,6 +3,11 @@ import { firestore, loginWithGoogle, auth, logout } from "../firebase";
 
 
 export default function Feed() {
+
+        return (
+            <h2>Feed</h2>
+        )
+    
     // const [tweets, setTweets] = useState([]);
     // const [tweet, setTweet] = useState({
     //     tweet: "",
