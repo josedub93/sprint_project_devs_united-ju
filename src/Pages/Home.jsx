@@ -1,5 +1,5 @@
 import React from "react";
-import { Context } from "../AppContext/AppContext";
+import {Context } from "../AppContext/AppContext";
 import Header from "../Components/Header"
 import PostArea from "../Components/PostArea";
 import Feed from "../Components/Feed";
@@ -9,7 +9,6 @@ function Home() {
 
     const { user } = Context();
 
-
     return (
         <div className="home">
            
@@ -17,7 +16,7 @@ function Home() {
         <Navigate to="/SignIn" />
       ) : (
         <div>
-          <Header />
+          <Header/>
           <div>
             <PostArea />
           </div>

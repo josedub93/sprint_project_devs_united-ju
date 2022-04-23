@@ -1,12 +1,25 @@
-import React, {useContext, useState} from 'react';
-import { AppContext } from "../AppContext/AppContext";
-import { firestore, loginWithGoogle } from "../firebase";
+import React, {useState} from 'react'
+import { loginWithGoogle } from "../firebase";
+import { Context } from "../AppContext/AppContext";
 import bigLogo from "../Icons/logo big.svg";
 import googleSignIn from "../Icons/google sign in.svg";
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
 
-  
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await loginWithGoogle();
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
        return (
          <div>
            <div>
@@ -22,7 +35,7 @@ function SignIn() {
                src={googleSignIn}
                alt="google sign in"
                
-               onClick={loginWithGoogle}
+               onClick={handleGoogleSignIn}
              />
              <p>
                © 2020 Devs_United - <span>BETA</span>
