@@ -1,11 +1,11 @@
 import React from 'react';
 import "../Styles/styles.css";
-import {Context } from "../AppContext/AppContext";
-import redHeart from "../Icons/red heart.svg"
+import { Context } from "../AppContext/AppContext";
+import trash from "../Icons/trash.svg"
 
 export default function Feed() {
 
-    const { tweet, tweets, deleteTweet, likeTweet } = Context();
+    const { user, tweet, tweets, deleteTweetPopUp, showLike } = Context();
 
     return (
         <div>
@@ -15,15 +15,19 @@ export default function Feed() {
                 return (
                     <div className='tweet-container'>
                         <div className='tweet' key={tweet.id}>
+                            <img src={tweet.picture} alt="profile picture" />
                             <div className='tweet-info'>
-                                <p>{tweet.tweet}</p>
-                                <p className='tweet-autor'>por: {tweet.autor}</p>
+                                <p className='tweet-autor'>{tweet.autor}</p>
                                 <p className='tweet-autor'>{tweet.email}</p>
+                                <p>{tweet.tweet}</p>
                             </div>
                             <div className='acciones'>
-                                <i className="fas fa-trash" onClick={() => deleteTweet(tweet.id)}></i>
-                                {/* <i class="fa-solid fa-heart-half"></i> */}
-                                <span><span onClick={() => likeTweet(tweet.id, tweet.likes)}><img src={redHeart} alt="corazon" height="15px" /></span>{tweet.likes ? tweet.likes : 0}</span>
+                                {tweet.uid === user.uid ?
+                                    <span onClick={() => deleteTweetPopUp(tweet.id)}>
+                                        <img src={trash} alt="delete" />
+                                    </span> : null
+                                }
+                                {showLike(tweet, user)}
                             </div>
                         </div>
                     </div>
