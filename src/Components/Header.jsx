@@ -10,7 +10,6 @@ export default function Header()  {
 
  const { user } = Context();
 
-
     return (
         <div>
         <h2>Header</h2>

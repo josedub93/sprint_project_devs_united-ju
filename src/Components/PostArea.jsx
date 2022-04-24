@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../Styles/styles.css";
 import { Context } from "../AppContext/AppContext";
 
 export default function PostArea() {
 
     const { user, sendTweet, tweet, setTweet } = Context();
+    const [characterCount, setCharacterCount] = useState(0);
 
     const handleChange = (e) => {
         let nuevoTweet = {
@@ -12,11 +13,13 @@ export default function PostArea() {
             uid: user.uid,
             email: user.email,
             autor: user.displayName,
-            picture: user.photoURL,
-            likedBy: [],
+            photo: user.photoURL,
+            likedBy: []
         };
         setTweet(nuevoTweet);
-    };
+        setCharacterCount(e.target.value.length)
+        };
+
 
     return (
         <div>
@@ -31,9 +34,13 @@ export default function PostArea() {
                     placeholder="What's Happening?"
                     maxLength="200"
                 />
+       <p>{characterCount}</p>
+       <p>200 max.</p>
+              <progress id="progress" value={characterCount} max="200"></progress>
+              
                 <div className='input-group'>
 
-                    <button onClick={sendTweet}>Enviar tweet</button>
+                    <button onClick={sendTweet}>POST</button>
                 </div>
             </form>
         </div>

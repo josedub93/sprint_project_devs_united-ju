@@ -15,7 +15,7 @@ export default function Feed() {
                 return (
                     <div className='tweet-container'>
                         <div className='tweet' key={tweet.id}>
-                            <img src={tweet.picture} alt="profile picture" />
+                            <img src={tweet.photo} alt="profile picture" />
                             <div className='tweet-info'>
                                 <p className='tweet-autor'>{tweet.autor}</p>
                                 <p className='tweet-autor'>{tweet.email}</p>

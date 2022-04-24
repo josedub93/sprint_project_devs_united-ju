@@ -41,37 +41,31 @@ export function AppProvider({ children }) {
                         email: doc.data().email,
                         uid: doc.data().uid,
                         date: doc.data().date,
-                        picture: doc.data().picture,
+                        photo: doc.data().photo,
                         likedBy: doc.data().likedBy
                     };
                 });
                 setTweets(tweets);
             });
-        auth.onAuthStateChanged((user) => {
-            setUser(user);
+         auth.onAuthStateChanged((user) => {
+             setUser(user);
         });
         return () => unsubscribe();
     }, []);
 
 
-    // useEffect(() => {
-    //     auth.onAuthStateChanged((user) => {
-    //       const { displayName, email, photoURL, uid } = user;
-    //       setUser({ displayName, email, photoURL, uid });
-    //     });
-    //   }, []);
 
     const sendTweet = (e) => {
         e.preventDefault();
         // enviamos el tweet a la colección
         let enviarTweet = firestore.collection("tweets").add(tweet);
         // el envio, devuelve una promesa
-        enviarTweet.then((docRef) => {
+        //enviarTweet.then((docRef) => {
             // y dentro de esta podemos rescatar una referencia
             // al documento (docRef), cuya información final
             // obtendremos con .get()
-            return docRef.get();
-        });
+         //   return docRef.get();
+        //});
         // docRef.get() devuelve una promesa
         // solicitarDocumento.then((doc) => {
 
@@ -84,7 +78,8 @@ export function AppProvider({ children }) {
         //     id: doc.id
         //   };
         //   // el cual añadiremos en la lista del estado
-        //   setTweets([nuevoTweet, ...tweets]);
+        
+        setTweet({ ...tweet, tweet: "" });
         // });
     };
 
