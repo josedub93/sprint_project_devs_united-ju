@@ -2,10 +2,13 @@ import React from 'react';
 import "../Styles/styles.css";
 import { Context } from "../AppContext/AppContext";
 import trash from "../Icons/trash.svg"
+import { Link } from "react-router-dom";
 
 export default function Feed() {
 
     const { user, tweet, tweets, deleteTweetPopUp, showLike } = Context();
+
+ 
 
     return (
         <div>
@@ -13,12 +16,15 @@ export default function Feed() {
             <h1>Tweets:</h1>
             {tweets.map((tweet) => {
                 return (
-                    <div className='tweet-container'>
+                    <div className='tweet-container' key="">
                         <div className='tweet' key={tweet.id}>
-                            <img src={tweet.photo} alt="profile picture" />
+                        <Link to="/Profile">
+                  <img src={tweet.photo} alt="profile pic" />
+                  <p className='tweet-autor'>{tweet.autor}</p>
+                </Link>
                             <div className='tweet-info'>
-                                <p className='tweet-autor'>{tweet.autor}</p>
-                                <p className='tweet-autor'>{tweet.email}</p>
+                                
+                                
                                 <p>{tweet.tweet}</p>
                             </div>
                             <div className='acciones'>
@@ -36,3 +42,5 @@ export default function Feed() {
         </div>
     );
 }
+
+                

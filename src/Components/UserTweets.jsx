@@ -1,7 +1,18 @@
-function UserTweets(){
-    return(
+import React from "react";
+import { Context } from "../AppContext/AppContext";
 
-<h2> UserTweets</h2>
+
+function UserTweets() {
+
+ 
+    return (
+        <div>
+            <h2> UserTweets</h2>
+
+
+        </div>
+
+
     )
 }
-export default  UserTweets;
+export default UserTweets;

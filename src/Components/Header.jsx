@@ -16,7 +16,7 @@ export default function Header()  {
         <img src={smallLogo} alt="" />
         <img src={devsUnited} alt="" />
         <div className='user-profile'>
-        <img className='user-profile-pic' src={user.photoURL}  alt="photo" />
+        <img className='user-profile-pic' src={user.photoURL}  alt="profile pic" />
         </div>
         <button onClick={logout}> Log Out</button>
         </div>

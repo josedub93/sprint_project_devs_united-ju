@@ -1,16 +1,15 @@
 import React, {useState} from 'react'
 import { loginWithGoogle } from "../firebase";
-import { Context } from "../AppContext/AppContext";
 import bigLogo from "../Icons/logo big.svg";
 import googleSignIn from "../Icons/google sign in.svg";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+
 
 function SignIn() {
-
-  const [error, setError] = useState("");
-
+  
   const navigate = useNavigate();
-
+  const [error, setError] = useState("");
+  
   const handleGoogleSignIn = async () => {
     try {
       await loginWithGoogle();
@@ -21,7 +20,8 @@ function SignIn() {
   };
 
        return (
-         <div>
+
+           <div>
            <div>
              <img src={bigLogo} alt="devs_united logo"/>
            </div>
@@ -41,7 +41,8 @@ function SignIn() {
                © 2020 Devs_United - <span>BETA</span>
              </p>
            </div>
-         </div>
+           </div>
+
        );
      };
      

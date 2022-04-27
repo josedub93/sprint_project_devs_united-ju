@@ -26,6 +26,7 @@ export function AppProvider({ children }) {
         pickedColor: ""
     });
     const [user, setUser] = useState(null);
+    const [pending, setPending] = useState(true);
 
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
@@ -49,11 +50,14 @@ export function AppProvider({ children }) {
             });
          auth.onAuthStateChanged((user) => {
              setUser(user);
+             setPending(false);
         });
         return () => unsubscribe();
     }, []);
 
-
+if(pending){
+    return <>Loading...</>
+}
 
     const sendTweet = (e) => {
         e.preventDefault();

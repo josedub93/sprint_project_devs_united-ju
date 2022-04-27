@@ -1,7 +1,30 @@
-function Profile(){
-    return(
+import React from 'react';
+import { Context } from "../AppContext/AppContext";
+import HeaderProfile from "../Components/HeaderProfile"
+import UserTweets from "../Components/UserTweets";
+import UserFavorites from "../Components/UserFavorites";
+import { Navigate } from "react-router-dom";
 
-<h2>Profile</h2>
+function Profile() {
+    const { user } = Context();
+
+    return (
+        <div>
+            {user ? (
+                <div>
+                    <HeaderProfile />
+                 <div>
+                    <img src={user.photoURL} alt="" />
+                    <p className='tweet-autor'>{user.email}</p>
+                 </div>
+                    <UserTweets />
+                    <UserFavorites />
+                </div>
+            ) : (
+                <Navigate to="/SignIn" />
+            )}
+        </div>
+
     )
 }
 export default Profile;

@@ -1,5 +1,5 @@
 import React from "react";
-import {Context } from "../AppContext/AppContext";
+import { Context } from "../AppContext/AppContext";
 import Header from "../Components/Header"
 import PostArea from "../Components/PostArea";
 import Feed from "../Components/Feed";
@@ -7,25 +7,26 @@ import { Navigate } from "react-router-dom";
 
 function Home() {
 
-    const { user } = Context();
+  const { user } = Context();
+  console.log(user)
 
-    return (
-        <div className="home">
-           
-      {!user?.displayName ? (
-        <Navigate to="/SignIn" />
-      ) : (
+  return (
+    <div className="home">
+
+      {user ? (
         <div>
-          <Header/>
+          <Header />
           <div>
             <PostArea />
           </div>
           <Feed />
         </div>
+      ) : (
+        <Navigate to="/SignIn" />
       )}
 
-        </div>
-    )
+    </div>
+  )
 };
 
 export default Home;
