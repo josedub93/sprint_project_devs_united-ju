@@ -4,8 +4,7 @@ import { Context } from "../AppContext/AppContext";
 
 export default function PostArea() {
 
-    const { user, sendTweet, tweet, setTweet } = Context();
-    const [characterCount, setCharacterCount] = useState(0);
+    const { user, sendTweet, tweet, setTweet, characterCount, setCharacterCount } = Context();
 
     const handleChange = (e) => {
         let nuevoTweet = {
@@ -14,7 +13,8 @@ export default function PostArea() {
             email: user.email,
             autor: user.displayName,
             photo: user.photoURL,
-            likedBy: []
+            likedBy: [],
+            date: new Date()
         };
         setTweet(nuevoTweet);
         setCharacterCount(e.target.value.length)

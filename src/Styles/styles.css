@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: solid red 1px; */
+  border: solid red 1px;
 }
 
 body {
@@ -51,11 +51,6 @@ body {
   padding: 15px;
 }
 
-.tweet-info {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
 
 .tweet-autor {
   font-size: 12px;

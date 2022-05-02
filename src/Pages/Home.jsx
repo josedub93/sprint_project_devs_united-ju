@@ -8,7 +8,6 @@ import { Navigate } from "react-router-dom";
 function Home() {
 
   const { user } = Context();
-  console.log(user)
 
   return (
     <div className="home">

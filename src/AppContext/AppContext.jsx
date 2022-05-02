@@ -27,6 +27,7 @@ export function AppProvider({ children }) {
     });
     const [user, setUser] = useState(null);
     const [pending, setPending] = useState(true);
+    const [characterCount, setCharacterCount] = useState(0);
 
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
@@ -59,33 +60,14 @@ if(pending){
     return <>Loading...</>
 }
 
-    const sendTweet = (e) => {
-        e.preventDefault();
-        // enviamos el tweet a la colección
-        let enviarTweet = firestore.collection("tweets").add(tweet);
-        // el envio, devuelve una promesa
-        //enviarTweet.then((docRef) => {
-            // y dentro de esta podemos rescatar una referencia
-            // al documento (docRef), cuya información final
-            // obtendremos con .get()
-         //   return docRef.get();
-        //});
-        // docRef.get() devuelve una promesa
-        // solicitarDocumento.then((doc) => {
-
-        // y dentro de esta, podemos rescatar la información
-        // del documento
-        //   let nuevoTweet = {
-        //     tweet: doc.data().tweet,
-        //     autor: doc.data().autor,
-        //     email: doc.data().email,
-        //     id: doc.id
-        //   };
-        //   // el cual añadiremos en la lista del estado
-        
-        setTweet({ ...tweet, tweet: "" });
-        // });
-    };
+     const sendTweet = (e) => {
+         e.preventDefault();
+         // enviamos el tweet a la colección
+         let enviarTweet = firestore.collection("tweets").add(tweet);       
+         setTweet({ ...tweet, tweet: "" });
+         setCharacterCount(0)
+     };
+    
 
     //Borrar Tweets
     const deleteTweet = (id) => {
@@ -162,13 +144,11 @@ if(pending){
             }
         }
     };
-
-
-   
+  
 
     return (
         <AppContext.Provider
-            value={{ user, setUser, tweet, setTweet, tweets, setTweets, sendTweet, deleteTweetPopUp, showLike }}>
+            value={{ user, setUser, tweet, setTweet, tweets, setTweets, sendTweet, deleteTweetPopUp, showLike, characterCount, setCharacterCount }}>
             {children}
         </AppContext.Provider>
     );
