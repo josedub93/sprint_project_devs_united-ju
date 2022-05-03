@@ -6,7 +6,7 @@ import UserFavorites from "../Components/UserFavorites";
 import { Navigate } from "react-router-dom";
 
 function Profile() {
-    const { user } = Context();
+    const { user, posts } = Context();
 
     return (
         <div>
@@ -17,9 +17,8 @@ function Profile() {
                     <img src={user.photoURL} alt="" />
                     <p className='tweet-autor'>{user.email}</p>
                  </div>
-                    <UserTweets />
-                    <UserFavorites />
-                </div>
+                 {posts ?  <UserTweets /> :  <UserFavorites />}
+                   </div>
             ) : (
                 <Navigate to="/SignIn" />
             )}

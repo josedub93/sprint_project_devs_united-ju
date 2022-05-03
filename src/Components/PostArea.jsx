@@ -6,19 +6,21 @@ export default function PostArea() {
 
     const { user, sendTweet, tweet, setTweet, characterCount, setCharacterCount } = Context();
 
-    const handleChange = (e) => {
-        let nuevoTweet = {
-            tweet: e.target.value,
-            uid: user.uid,
-            email: user.email,
-            autor: user.displayName,
-            photo: user.photoURL,
-            likedBy: [],
-            date: new Date()
-        };
-        setTweet(nuevoTweet);
-        setCharacterCount(e.target.value.length)
-        };
+     const handleChange = (e) => {
+         let nuevoTweet = {
+             tweet: e.target.value,
+             uid: user.uid,
+             email: user.email,
+             autor: user.displayName,
+             photo: user.photoURL,
+             likedBy: [],
+             date: new Date()
+         };
+         setTweet(nuevoTweet);
+         setCharacterCount(e.target.value.length)
+         };
+
+
 
 
     return (

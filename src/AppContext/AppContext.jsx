@@ -20,14 +20,16 @@ export function AppProvider({ children }) {
         tweet: "",
         autor: "",
         uid: "",
-        mail: "",
+        email: "",
         likes: 0,
         date: "",
+        photoURL:"",
         pickedColor: ""
     });
     const [user, setUser] = useState(null);
     const [pending, setPending] = useState(true);
     const [characterCount, setCharacterCount] = useState(0);
+    const [posts, setPosts] = useState(true);
 
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
@@ -39,12 +41,13 @@ export function AppProvider({ children }) {
                         tweet: doc.data().tweet,
                         autor: doc.data().autor,
                         id: doc.id,
-                        likes: doc.data().likes || 0,
+                        likes: doc.data().likes,
                         email: doc.data().email,
                         uid: doc.data().uid,
                         date: doc.data().date,
                         photo: doc.data().photo,
-                        likedBy: doc.data().likedBy
+                        likedBy: doc.data().likedBy,
+                       pickedColor:doc.data().pickedColor
                     };
                 });
                 setTweets(tweets);
@@ -60,14 +63,14 @@ if(pending){
     return <>Loading...</>
 }
 
-     const sendTweet = (e) => {
-         e.preventDefault();
-         // enviamos el tweet a la colección
-         let enviarTweet = firestore.collection("tweets").add(tweet);       
-         setTweet({ ...tweet, tweet: "" });
-         setCharacterCount(0)
+      const sendTweet = (e) => {
+          e.preventDefault();
+          // enviamos el tweet a la colección
+          let enviarTweet = firestore.collection("tweets").add(tweet);       
+          setTweet({ ...tweet, tweet: "" });
+          setCharacterCount(0)
      };
-    
+
 
     //Borrar Tweets
     const deleteTweet = (id) => {
@@ -148,7 +151,7 @@ if(pending){
 
     return (
         <AppContext.Provider
-            value={{ user, setUser, tweet, setTweet, tweets, setTweets, sendTweet, deleteTweetPopUp, showLike, characterCount, setCharacterCount }}>
+            value={{ user, setUser, tweet, setTweet, tweets, setTweets, sendTweet, deleteTweetPopUp, showLike, characterCount, setCharacterCount, posts }}>
             {children}
         </AppContext.Provider>
     );

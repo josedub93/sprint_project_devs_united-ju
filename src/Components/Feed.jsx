@@ -6,18 +6,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function Feed() {
 
-    const { user, tweet, tweets, deleteTweetPopUp, showLike } = Context();
-    let navigate = useNavigate();
+     const { user, tweet, tweets, deleteTweetPopUp, showLike } = Context();
+     let navigate = useNavigate();
 
-    function handleClickToProfile(tweet) {
-        if (tweet.userId === user.uid) {
-            navigate("/Profile")
-        } else if (tweet.userId !== user.uid) {
-            navigate("/Profile")
-        }
-    };
-
-
+     function handleClickToProfile(tweet) {
+         if (tweet.userId === user.uid) {
+             navigate("/Profile")
+         } else if (tweet.userId !== user.uid) {
+             navigate("/Profile")
+         }
+     };
 
 
     return (
@@ -28,12 +26,12 @@ export default function Feed() {
                 return (
                     <div className='tweet-container' key={tweet.id}>
                         <div>
-                            <img src={tweet.photo}  onClick={() => handleClickToProfile(tweet)} alt="profile pic"/>
+                            <img src={tweet.photo} onClick={() => handleClickToProfile(tweet)}  alt="profile pic"/>
                         </div>
                         <div>
                             <div>
                                 <p className='tweet-autor' onClick={() => handleClickToProfile(tweet)}>{tweet.autor}</p>
-                                <span>  -{tweetDate}.</span>
+                                <span>  -fecha.</span>
                             </div>
                             {tweet.uid === user.uid ?
                                 <span onClick={() => deleteTweetPopUp(tweet.id)}>
