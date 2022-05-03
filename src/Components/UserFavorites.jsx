@@ -1,6 +1,6 @@
 import React from "react";
 import { Context } from "../AppContext/AppContext";
-import Tweet from "./Tweet";
+import Tweets from "./Tweets";
 
 function UserFavorites(){
 
@@ -14,7 +14,7 @@ function UserFavorites(){
           (favorite) => uid === favorite
         );
         if (userFavorites >= 0) {
-          return <Tweet tweet={tweet} i={i} />;
+          return <Tweets tweet={tweet} i={i} />;
         }
       })}
     </div>

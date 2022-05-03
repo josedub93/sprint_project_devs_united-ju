@@ -1,20 +1,18 @@
 import React from "react";
 import { Context } from "../AppContext/AppContext";
-import Tweet from "./Tweet";
+import Tweets from "./Tweets";
 
-function UserTweets() {
+const UserTweets = () => {
+  const { tweets, uid } = Context();
 
-    const { tweets, uid } = Context();
-
-    return (
-      <div>
-        {tweets.map((tweet, i) => {
-          if (uid === tweet.uid) {
-            return <Tweet tweet={tweet} i={i} />;
-          }
-        })}
-      </div>
-    );
-  };
-
+  return (
+    <div className="Tweets">
+      {tweets.map((tweet, i) => {
+        if (uid === tweet.uid) {
+          return <Tweets tweet={tweet} i={i} />;
+        }
+      })}
+    </div>
+  );
+};
 export default UserTweets;

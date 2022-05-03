@@ -23,13 +23,18 @@ export function AppProvider({ children }) {
         email: "",
         likes: 0,
         date: "",
-        photoURL:"",
+        photoURL: "",
         pickedColor: ""
     });
     const [user, setUser] = useState(null);
     const [pending, setPending] = useState(true);
     const [characterCount, setCharacterCount] = useState(0);
+    const [uid, setUid] = useState("");
     const [posts, setPosts] = useState(true);
+    const [favorites, setFavorites] = useState(false);
+    const [uidUsername, setUidUsername] = useState("");
+    const [uidProfilePic, setUidProfilePic] = useState("");
+    const [pickedColor, setPickedColor] = useState(undefined);
 
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
@@ -47,29 +52,29 @@ export function AppProvider({ children }) {
                         date: doc.data().date,
                         photo: doc.data().photo,
                         likedBy: doc.data().likedBy,
-                       pickedColor:doc.data().pickedColor
+                        pickedColor: doc.data().pickedColor
                     };
                 });
                 setTweets(tweets);
             });
-         auth.onAuthStateChanged((user) => {
-             setUser(user);
-             setPending(false);
+        auth.onAuthStateChanged((user) => {
+            setUser(user);
+            setPending(false);
         });
         return () => unsubscribe();
     }, []);
 
-if(pending){
-    return <>Loading...</>
-}
+    if (pending) {
+        return <>Loading...</>
+    }
 
-      const sendTweet = (e) => {
-          e.preventDefault();
-          // enviamos el tweet a la colección
-          let enviarTweet = firestore.collection("tweets").add(tweet);       
-          setTweet({ ...tweet, tweet: "" });
-          setCharacterCount(0)
-     };
+    const sendTweet = (e) => {
+        e.preventDefault();
+        // enviamos el tweet a la colección
+        let enviarTweet = firestore.collection("tweets").add(tweet);
+        setTweet({ ...tweet, tweet: "" });
+        setCharacterCount(0)
+    };
 
 
     //Borrar Tweets
@@ -84,23 +89,23 @@ if(pending){
         firestore.doc(`tweets/${id}`).delete();
     };
 
-//mensaje de confirmacion antes de borrar tweet
+    //mensaje de confirmacion antes de borrar tweet
     const deleteTweetPopUp = (id) => {
         confirmAlert({
-          title: 'Confirm to Delete',
-          message: 'Are you sure you want to delete this tweet?',
-          buttons: [
-            {
-              label: 'Yes',
-              onClick: () => deleteTweet(id)
-            },
-            {
-              label: 'No',
-              onClick: () => {}
-            }
-          ]
+            title: 'Confirm to Delete',
+            message: 'Are you sure you want to delete this tweet?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => deleteTweet(id)
+                },
+                {
+                    label: 'No',
+                    onClick: () => { }
+                }
+            ]
         });
-    };    
+    };
 
     //Likes de tweets
     const likeTweet = (tweet, user) => {
@@ -147,11 +152,11 @@ if(pending){
             }
         }
     };
-  
+
 
     return (
         <AppContext.Provider
-            value={{ user, setUser, tweet, setTweet, tweets, setTweets, sendTweet, deleteTweetPopUp, showLike, characterCount, setCharacterCount, posts }}>
+            value={{ user, setUser, tweet, setTweet, tweets, setTweets, sendTweet, deleteTweetPopUp, showLike, characterCount, setCharacterCount, posts, setPosts, uid, setUid, favorites, setFavorites, uidUsername, setUidUsername, uidProfilePic, setUidProfilePic }}>
             {children}
         </AppContext.Provider>
     );

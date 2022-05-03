@@ -4,15 +4,16 @@ import back from "../Icons/back.svg";
 import { Context } from "../AppContext/AppContext";
 import "../Styles/styles.css";
 import {logout} from "../firebase"
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function HeaderProfile()  {
 
  const { user } = Context();
+ let navigate = useNavigate();
 
  function handleBackButton() {        
-    <Navigate to="/" />   
+    navigate("/")
 }
 
     return (
@@ -20,10 +21,11 @@ export default function HeaderProfile()  {
         <h2>Header Profile</h2>
                    
                     <div>
+                        
                         <img src={back} onClick={handleBackButton} alt="Back" />
-                        <p> nombre de usuario </p> 
+                        <p> {user.displayName}</p> 
                     </div>
-                     <button onClick={logout}>Log Out
+                     <button onClick={logout}>
                         <img 
                         src={logOut} alt="Log Out" />
                     </button>
