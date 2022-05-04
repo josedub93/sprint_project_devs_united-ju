@@ -26,7 +26,7 @@ function Profile() {
         <div>
           <HeaderProfile />
           <div className="ProfileInfo">
-            <img src={uidProfilePic} alt="Profile picture" className="pictureInfo" referrerPolicy="no-referrer" />
+            <img src={uidProfilePic} alt="profile pic" className="pictureInfo" referrerPolicy="no-referrer" />
 
             <h2>{uidUsername}</h2>
 

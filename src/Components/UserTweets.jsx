@@ -3,10 +3,10 @@ import { Context } from "../AppContext/AppContext";
 import Tweets from "./Tweets";
 
 const UserTweets = () => {
-  const { tweets, uid } = Context();
+  const { tweet, tweets, uid } = Context();
 
   return (
-    <div className="Tweets">
+    <div className="Tweets" key={tweet.id}>
       {tweets.map((tweet, i) => {
         if (uid === tweet.uid) {
           return <Tweets tweet={tweet} i={i} />;
