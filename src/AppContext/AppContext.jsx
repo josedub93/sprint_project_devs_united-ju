@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
-import { firestore, auth, loginWithGoogle } from "../firebase";
+import { firestore, auth } from "../firebase";
 import redHeart from "../Icons/red heart.svg"
 import whiteHeart from "../Icons/white heart.svg"
 import { confirmAlert } from 'react-confirm-alert';

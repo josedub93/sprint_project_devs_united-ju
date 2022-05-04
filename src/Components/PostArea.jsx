@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../Styles/styles.css";
 import { Context } from "../AppContext/AppContext";
 import { Link } from "react-router-dom";
