@@ -1,13 +1,11 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: solid red 1px;
+*{
+  border: 1px solid red ;
 }
 
 body {
   margin: 20px;
-  background-color: #edf2f6;
+  background-color: #2e132c;
+  color: #edf2f6;
 }
 
 .App {
@@ -15,66 +13,286 @@ body {
   text-align: center;
 }
 
-.formulario {
+.home {
   display: flex;
-  flex-direction: column;
-  width: 300px;
+}
+
+.GoogleLogin {
+  display: flex;
   align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 1300px;
+  padding: 0;
+  margin-top: 9vh;
+  margin-left: 9vh;
+}
+
+.GoogleLogin div:last-child {
+  margin-left: 120px;
+  padding-left: 130px;
+  margin-right: 0;
+  margin-top: 15vh;
+  width: 500px;
+  box-sizing: border-box;
+}
+.title {
+  font-family: "Silkscreen", sans-serif;
+  color: whitesmoke;
+}
+
+.signIn {
+  width: 220px;
+  height: 35px;
+  margin-top: 2vh;
+}
+
+.signIn:hover {
+  cursor: pointer;
+  width: 230px;
+}
+
+.loginBottom1 {
+  color: #60265b;
+  margin-top: 25vh;
+}
+.loginBottom2 {
+  color: #f50d5a;
+}
+
+.FeedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 700px;
   margin: 0 auto;
 }
 
-.formulario .input-group {
-  margin: 15px;
-  display: flex;
-  align-items: center;
+.user-profile-pic {
+  border: 2.5px solid rgb(0, 68, 255);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.logoHeader {
+  width: 120px;
   height: 20px;
 }
 
-
-.formulario button {
-  padding: 5px;
-}
-
-.tweet-container {
-  background-color: purple;
-  border-radius: 5px;
-  max-width: 500px;
-  margin: 15px auto;
-  box-shadow: 0 0.2px 0.9px -3px rgba(0, 0, 0, 0.022),
-    0 0.5px 2.3px -3px rgba(0, 0, 0, 0.031),
-    0 1.1px 4.6px -3px rgba(0, 0, 0, 0.039),
-    0 2.2px 9.5px -3px rgba(0, 0, 0, 0.048), 0 6px 26px -3px rgba(0, 0, 0, 0.07);
-}
-.tweet {
+.PostArea {
   display: flex;
+  flex-direction: row;
+  width: 600px;
+  align-items: flex-start;
+  margin: 0 auto;
+  margin-top: 10px;
   justify-content: space-between;
-  padding: 15px;
+  background-color: #150714;
 }
 
-
-.tweet-autor {
-  font-size: 12px;
+.user-pic-postarea {
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  margin-top: 10px;
 }
 
-textarea{
+.formulario {
+  display: flex;
+  width: 88%;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.textarea {
+  background-color: #2f112d;
+  color: #914d8b;
+  font-family: "Fira Code", monospace;
+  border: none;
+  height: 60px;
+  padding: 0 0 32px 8px;
+  box-sizing: border-box;
   resize: none;
 }
 
-.acciones {
+.textarea::placeholder {
+  color: #914d8b;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+.textarea::-ms-input-placeholder {
+  color: #914d8b;
+}
+
+.progress {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  margin: 0px 0 -7px 0;
+}
+
+progress {
+  border-radius: 7px;
+  width: 100%;
+  height: 5px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #2f112d;
+}
+
+progress::-webkit-progress-value {
+  background-color: #00da76;
+}
+
+progress::-moz-progress-bar {
+  background-color: #2f112d;
+}
+
+.tweetLenght {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 0 1px 0;
+  font-family: "Fira Code", monospace;
+  font-size: 10px;
+}
+
+.lenghtCount {
+  color: whitesmoke;
+  margin: 1px 0 0 0;
+}
+
+.maxLenght {
+  color: #f50d5a;
+  margin: 1px 2px 0px auto;
+}
+
+.postbtn {
+  width: 70px;
+  height: 26px;
   cursor: pointer;
+  border: none;
+  background: url("../Icons/postBtnOff.svg") no-repeat;
+  margin: 7px 0 0 457px;
+}
+
+.postbtn:hover {
+  background: url("../Icons/postBtnOn.svg") no-repeat;
+} 
+
+.Tweets {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 550px;
+}
+
+.tweet-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 2px groove #60265b;
+  padding-bottom: 10px;
+}
+
+.tweetPictCont {
+  margin-top: 14px;
+}
+
+.TweetPic {
+  border: 2.5px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.tweetAutIconCont {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 5px 5px 15px;
+}
+.tweetAutCont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+  margin-bottom: 0px;
+}
+
+.tweet-autor {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 13px;
+  color: #2e132c;
+  background-color: rgb(255, 187, 0);
+  box-sizing: content-box;
+  margin: 0 0 0 0;
+  padding: 0px;
+  border-radius: 6%;
+}
+
+.tweetCont {
+  margin: -5px 0 0 0;
+  height: 100%;
+  padding-bottom: 0 auto;
+}
+
+.tweet{
+  font-family: "Fira Code", monospace;
+  color: whitesmoke;
+  font-size: 12px;
+  margin: 3px 0 30px 0;
+  width: 100%;
+}
+
+.like{
+  border: none;
+  text-decoration: none;
+  background: none;
+  font-family: "Fira Code", monospace;
 }
 
 
-.user-profile {
+.ProfileInfo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+  background-color: #150714;
+  width: 105%;
+  height: 145px;
+  margin: 5px 0px -5px -50px;
 }
 
-.user-profile img {
+.pictureInfo {
+  border: 2.5px solid rgb(255, 187, 0);
   border-radius: 50%;
-  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.ProfileInfo h2 {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 15px;
+  color: #2e132c;
+  background-color: rgb(255, 187, 0);
+  box-sizing: content-box;
+  margin: 10px 0 20px 0;
+  padding: 0px;
+  border-radius: 6%;
+}
+
+.ProfileInfoBttns button {
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  background: none;
+}
+
+.ProfileInfoBttns button:hover {
+  cursor: pointer;
 }

@@ -2,13 +2,16 @@ import React, {useState} from 'react'
 import { loginWithGoogle } from "../firebase";
 import bigLogo from "../Icons/logo big.svg";
 import googleSignIn from "../Icons/google sign in.svg";
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function SignIn() {
   
+
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
   
   const handleGoogleSignIn = async () => {
     try {
@@ -19,26 +22,27 @@ function SignIn() {
     }
   };
 
+
        return (
 
+           <div className="GoogleLogin">
            <div>
-           <div>
-             <img src={bigLogo} alt="devs_united logo"/>
+             <img src={bigLogo} alt="devs_united logo" width="400" height="500" />
            </div>
            <div>
-             <h1>Welcome!</h1>
-             <p>
+             <h1 className="title">Welcome!</h1>
+             <p className="text">
                The place where developeres from all around the world share thoughts,
                ideas, get inspired and so much more.
              </p>
              <img
                src={googleSignIn}
                alt="google sign in"
-               
+               className="signIn"
                onClick={handleGoogleSignIn}
              />
-             <p>
-               © 2020 Devs_United - <span>BETA</span>
+             <p className="text loginBottom1">
+               © 2020 Devs_United - <span className="loginBottom2">BETA</span>
              </p>
            </div>
            </div>

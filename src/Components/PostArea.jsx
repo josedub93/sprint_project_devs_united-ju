@@ -30,8 +30,8 @@ export default function PostArea() {
 
 
     return (
-        <div>
-            <h2>PostArea</h2>
+        <div className='PostArea'>
+        
             <Link to="/Profile"
                 onClick={() =>
                     handleProfileRoute(user.uid, user.displayName, user.photoURL)
@@ -39,7 +39,7 @@ export default function PostArea() {
                 <img
                     src={user.photoURL}
                     alt="profile pic"
-
+                    className="user-pic-postarea"
                 />
 
             </Link>
@@ -52,15 +52,19 @@ export default function PostArea() {
                     rows="5"
                     placeholder="What's Happening?"
                     maxLength="200"
+                    className="textarea"
                 />
-                <p>{characterCount}</p>
-                <p>200 max.</p>
+                <div className="progress">
                 <progress id="progress" value={characterCount} max="200"></progress>
-
-                <div className='input-group'>
-
-                    <button onClick={sendTweet}>POST</button>
+                <div className="tweetLenght">
+                <p className="lenghtCount">{characterCount}</p>
+                <p className="maxLenght">200 max.</p>
                 </div>
+                </div>
+             
+
+                    <button  className="postbtn" onClick={sendTweet}></button>
+               
             </form>
         </div>
     )

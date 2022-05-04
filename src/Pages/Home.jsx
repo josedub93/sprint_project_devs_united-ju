@@ -15,9 +15,7 @@ function Home() {
       {user ? (
         <div>
           <Header />
-          <div>
-            <PostArea />
-          </div>
+          <PostArea />
           <Feed />
         </div>
       ) : (

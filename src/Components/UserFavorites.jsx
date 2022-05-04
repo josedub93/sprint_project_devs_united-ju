@@ -8,7 +8,6 @@ function UserFavorites(){
 
   return (
     <div className="Tweets">
-        <h2>UserFavorites</h2>
       {tweets.map((tweet, i) => {
         const userFavorites = tweet.likedBy.findIndex(
           (favorite) => uid === favorite

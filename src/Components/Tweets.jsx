@@ -19,31 +19,32 @@ export default function Tweets({ tweet, i }) {
             navigate("/Profile")
         }
     };
-    const format = (dates, locale, options) =>
-        new Intl.DateTimeFormat(locale, options).format(dates)
-    let date = tweet.date.toDate()
-    const posted = format(date, 'es', { day: 'numeric', month: 'short' });
+    //fecha de tweet en formato corto
+    // const format = (dates, locale, options) =>
+    //     new Intl.DateTimeFormat(locale, options).format(dates)
+    // let date = tweet.date.toDate()
+    // const posted = format(date, 'es', { day: 'numeric', month: 'short' });
+
     return (
         <div className='tweet-container' key={tweet.id}>
-            <div>
-                <img src={tweet.photo} onClick={() => handleClickToProfile(tweet)} alt="profile pic" />
+            <div className="tweetPictCont">
+                <img src={tweet.photo}  className="TweetPic" onClick={() => handleClickToProfile(tweet)} alt="profile pic" />
             </div>
-            <div>
-                <div>
+            <div className='tweetAutIconCont'>
+                <div className='tweetAutCont' >
+                   
                     <p className='tweet-autor' onClick={() => handleClickToProfile(tweet)}>{tweet.autor}</p>
-                    <span>  -{posted}.</span>
-                </div>
-                {tweet.uid === user.uid ?
+                    {tweet.uid === user.uid ?
                     <span onClick={() => deleteTweetPopUp(tweet.id)}>
                         <img src={trash} alt="delete" />
                     </span> : null
                 }
-                <div className='tweet'>
-                    <p>{tweet.tweet}</p>
+                    <span>  -fecha.</span>
                 </div>
-
-                <div>
-                    {showLike(tweet, user)}
+              
+                <div className='tweetCont'>
+                    <p className='tweet'>{tweet.tweet}</p>
+                    <button className='like'>{showLike(tweet, user)}</button>
                 </div>
             </div>
         </div>

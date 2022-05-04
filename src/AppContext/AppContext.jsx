@@ -24,7 +24,7 @@ export function AppProvider({ children }) {
         likes: 0,
         date: "",
         photoURL: "",
-        pickedColor: ""
+      
     });
     const [user, setUser] = useState(null);
     const [pending, setPending] = useState(true);
@@ -34,7 +34,6 @@ export function AppProvider({ children }) {
     const [favorites, setFavorites] = useState(false);
     const [uidUsername, setUidUsername] = useState("");
     const [uidProfilePic, setUidProfilePic] = useState("");
-    const [pickedColor, setPickedColor] = useState(undefined);
 
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
@@ -46,13 +45,13 @@ export function AppProvider({ children }) {
                         tweet: doc.data().tweet,
                         autor: doc.data().autor,
                         id: doc.id,
-                        likes: doc.data().likes,
+                        likes: doc.data().likes ,
                         email: doc.data().email,
                         uid: doc.data().uid,
                         date: doc.data().date,
                         photo: doc.data().photo,
                         likedBy: doc.data().likedBy,
-                        pickedColor: doc.data().pickedColor
+                
                     };
                 });
                 setTweets(tweets);
