@@ -34,11 +34,12 @@ export function AppProvider({ children }) {
     const [favorites, setFavorites] = useState(false);
     const [uidUsername, setUidUsername] = useState("");
     const [uidProfilePic, setUidProfilePic] = useState("");
-
+   
     useEffect(() => {
         //Toma la coleccion con nombre tweets de la base de datos
         const unsubscribe = firestore
             .collection("tweets")
+            .orderBy('date', "desc")
             .onSnapshot((snapshot) => {
                 const tweets = snapshot.docs.map((doc) => {
                     return {
