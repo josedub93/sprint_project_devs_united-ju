@@ -1,20 +1,16 @@
-*{
+/* *{
   border: 1px solid red ;
-}
+} */
 
 body {
-  margin: 20px;
   background-color: #2e132c;
-  color: #edf2f6;
+  color: whitesmoke;
+  overflow-x: hidden;
 }
 
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-
-.home {
-  display: flex;
+@font-face {
+  font-family: Silkscreen;
+  src: url(../fonts/slkscrb.ttf);
 }
 
 .GoogleLogin {
@@ -38,6 +34,11 @@ body {
 }
 .title {
   font-family: "Silkscreen", sans-serif;
+  color: whitesmoke;
+}
+
+.text {
+  font-family: "Fira Code", monospace;
   color: whitesmoke;
 }
 
@@ -69,6 +70,11 @@ body {
   margin: 0 auto;
 }
 
+.headerUserName{
+  font-family: "Silkscreen", sans-serif;
+  margin-left: 10px;
+}
+
 .user-profile-pic {
   border: 2.5px solid rgb(0, 68, 255);
   border-radius: 50%;
@@ -76,9 +82,39 @@ body {
   height: 30px;
 }
 
+.backBttn {
+  display: flex;
+  text-decoration: none;
+  font-family: "Silkscreen", sans-serif;
+  font-size: 20px;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.backBttn p {
+  margin: 4px 0 0 10px;
+}
+
 .logoHeader {
   width: 120px;
   height: 20px;
+}
+
+.logout {
+  width: 120px;
+  height: 20px;
+}
+.logout:hover {
+  cursor: pointer;
+}
+
+.PostAreaCont{
+  border-bottom: 3px groove #60265b;
+  box-sizing: border-box;
+  width: 105%;
+  height: 120px;
+  margin: -5px 0px -5px -30px;
+  background-color: #150714;
 }
 
 .PostArea {
@@ -188,6 +224,7 @@ progress::-moz-progress-bar {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  padding-top: 15px;
   width: 550px;
 }
 
@@ -206,8 +243,9 @@ progress::-moz-progress-bar {
 .TweetPic {
   border: 2.5px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
 
 .tweetAutIconCont {
@@ -228,20 +266,21 @@ progress::-moz-progress-bar {
   font-family: "Silkscreen", sans-serif;
   font-size: 13px;
   color: #2e132c;
-  background-color: rgb(255, 187, 0);
+  background-color: rgb(233, 229, 219);
   box-sizing: content-box;
   margin: 0 0 0 0;
   padding: 0px;
   border-radius: 6%;
+  cursor: pointer;
 }
 
 .tweetCont {
-  margin: -5px 0 0 0;
+  margin: 10px 0 0 0;
   height: 100%;
   padding-bottom: 0 auto;
 }
 
-.tweet{
+.tweetCont p {
   font-family: "Fira Code", monospace;
   color: whitesmoke;
   font-size: 12px;
@@ -249,11 +288,12 @@ progress::-moz-progress-bar {
   width: 100%;
 }
 
-.like{
+.tweetCont button{
   border: none;
   text-decoration: none;
   background: none;
   font-family: "Fira Code", monospace;
+  color: whitesmoke;
 }
 
 
@@ -295,4 +335,52 @@ progress::-moz-progress-bar {
 
 .ProfileInfoBttns button:hover {
   cursor: pointer;
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+}
+
+.likes p {
+  color: #f50d5a;
+  margin: 0 0 0 7px;
+  display: inline-block;
+  align-self: center;
+}
+
+.dislikes {
+  display: flex;
+  flex-direction: row;
+}
+
+.dislikes p {
+  margin: 0 0 0 7px;
+  display: inline-block;
+  align-self: center;
+}
+
+.svg-delete {
+  width: 24px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.delete{
+  align-items: center;
+  justify-content: flex-end;
+  width: 50px;
+}
+  
+.user-date{
+  align-items: center;
+  width: 450px;
+} 
+
+.flex {
+  display: flex;
+}
+
+.user-date span{
+  margin-left: 15px;
 }

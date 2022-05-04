@@ -20,10 +20,10 @@ export default function Tweets({ tweet, i }) {
         }
     };
     //fecha de tweet en formato corto
-    // const format = (dates, locale, options) =>
-    //     new Intl.DateTimeFormat(locale, options).format(dates)
-    // let date = tweet.date.toDate()
-    // const posted = format(date, 'es', { day: 'numeric', month: 'short' });
+     const format = (dates, locale, options) =>
+         new Intl.DateTimeFormat(locale, options).format(dates)
+     let date = tweet.date.toDate()
+     const posted = format(date, 'es', { day: 'numeric', month: 'short' });
 
     return (
         <div className='tweet-container' key={tweet.id}>
@@ -32,14 +32,16 @@ export default function Tweets({ tweet, i }) {
             </div>
             <div className='tweetAutIconCont'>
                 <div className='tweetAutCont' >
-                   
+                   <div className="user-date flex">
                     <p className='tweet-autor' onClick={() => handleClickToProfile(tweet)}>{tweet.autor}</p>
+                    <span>  -{posted}.</span>
+                    </div>
                     {tweet.uid === user.uid ?
-                    <span onClick={() => deleteTweetPopUp(tweet.id)}>
-                        <img src={trash} alt="delete" />
+                    <span className='delete flex' onClick={() => deleteTweetPopUp(tweet.id)}>
+                        <img src={trash} className="svg-delete flex" alt="delete" />
                     </span> : null
                 }
-                    <span>  -fecha.</span>
+                  
                 </div>
               
                 <div className='tweetCont'>

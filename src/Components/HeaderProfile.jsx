@@ -18,9 +18,11 @@ export default function HeaderProfile() {
 
     return (
         <div className="FeedHeader">
-            <img src={back} onClick={handleBackButton} alt="Back" />
-            <p> {user.displayName}</p>
+            <div className="flex">
+            <img src={back} onClick={handleBackButton} className="backBttn" alt="Back" />
+            <p className="headerUserName"> {user.displayName}</p>
+            </div>
             <img src={logOut} className="logout" onClick={logout} alt="Log Out" />
-        </div>
+            </div>
     )
 }

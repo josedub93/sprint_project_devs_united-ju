@@ -132,7 +132,7 @@ export function AppProvider({ children }) {
             if (liked < 0) {
                 return (
                     <>
-                        <span onClick={() => likeTweet(tweet, user)}>
+                        <span onClick={() => likeTweet(tweet, user)}  className="dislikes">
                             <img height="12px" src={whiteHeart} alt="" />
                             <p> {tweet.likedBy.length}</p>
                         </span>
@@ -142,7 +142,7 @@ export function AppProvider({ children }) {
                 //ya se le dio like
                 return (
                     <>
-                        <span onClick={() => dislikeTweet(tweet, user)} >
+                        <span onClick={() => dislikeTweet(tweet, user)} className="likes">
                             <img height="12px" src={redHeart} alt="" />
                             <p> {tweet.likedBy.length}</p>
                         </span>

@@ -10,12 +10,14 @@ function Home() {
   const { user } = Context();
 
   return (
-    <div className="home">
+    <div>
 
       {user ? (
         <div>
           <Header />
+          <div className="PostAreaCont">
           <PostArea />
+          </div>
           <Feed />
         </div>
       ) : (
