@@ -65,7 +65,7 @@ export function AppProvider({ children }) {
     }, []);
 
     if (pending) {
-        return <>Loading...</>
+        return < h1 className="loader">Loading...</h1>
     }
 
     const sendTweet = (e) => {
@@ -74,6 +74,10 @@ export function AppProvider({ children }) {
         let enviarTweet = firestore.collection("tweets").add(tweet);
         setTweet({ ...tweet, tweet: "" });
         setCharacterCount(0)
+        setPending(true);
+        setTimeout(() => {
+            setPending(false)
+        }, 90);
     };
 
 

@@ -384,3 +384,7 @@ progress::-moz-progress-bar {
 .user-date span{
   margin-left: 15px;
 }
+
+.loader{
+  text-align: center;
+}
